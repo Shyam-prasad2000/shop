@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="">
+<link href="{% static 'hm/css/bootstrap.min.css'%}" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<link href="{% static 'hm/css/style.css'%}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+</head>
+<body>
+
+
+<!-- HEADER =============================-->
+<header class="item header margin-top-0">
+<div class="wrapper">
+	
+	<nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
+			<i class="fa fa-bars"></i>
+			<span class="sr-only">Toggle navigation</span>
+			</button>
+			<a href="/" class="navbar-brand brand"> SCORILO </a>
+		</div>
+		
+		<div id="navbar-collapse-02" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><form action="{% url 'search' %}" methon="get">
+					<div class="input-group rounded">
+						<input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+						  aria-describedby="search-addon" name='q'/>
+						<span class="input-group-text border-0" id="search-addon">
+						  <button class="btn btn-primary">Search</button>
+						</span>
+					  </div>
+				</form>
+					</li>
+				<li class="propClone"><a href="/">Home</a></li>
+				<li class="propClone"><a href="shop.html">Shop</a></li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  Category
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding:14px">
+						<a class="dropdown-time" href="/">All</a><br>
+						{% for i in ct %}
+					  <a class="dropdown-item" href={{i.get_url}}>{{i.name}}</a>
+					  <br>
+					  <!-- <a class="dropdown-item" href="#">Another action</a>
+					  <div class="dropdown-divider"></div>
+					  <a class="dropdown-item" href="#">Something else here</a> -->
+					  {% endfor %}
+					</div>
+				  </li>
+				<li class="propClone"><a href="checkout.html">Login</a></li>
+				{% if itc > 0 %}
+				<li class="propClone"><a href="{% url 'cartDetails' %}">Cart{{itc}}</a></li>
+				
+			</ul>
+		</div>
+	</div>
+	</nav>
+	
+</div>
+</header>
+{% block content %}
+{% endblock %}
+</body>
+</html>
